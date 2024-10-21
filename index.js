@@ -76,7 +76,7 @@ app.get("/admindashboard", (req, res) => {
 //admin module files
 app.get("/addEvent", async (req, res) => {
   res.sendFile(__dirname + "/newevent.html");
-})
+});
 // admin updating part
 app.post("/updateEvent/:id", async (req, res) => {
 
@@ -328,6 +328,6 @@ app.post("/register", function (req, res) {
 
 
 //server starting
-app.listen(3000, () => {
+app.listen(8000, () => {
   console.log("Server is running");
 });

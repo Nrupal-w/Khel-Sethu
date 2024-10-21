@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Khel Sethu</title>
+    <title>inVITe</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -554,12 +554,12 @@
         </a>
 
         <div class="nav container">
-          <a class="logo" href="/"><img src="/images/logo.png" height="60px" width="60px"> Khel Sethu</a>
+          <a class="logo" href="/">inVITe</a>
           <ul class="navbar">
             <li><a href="/" class="nav-link">Home</a></li>
 
             <li><a href="#events" class="nav-link">Events</a></li>
-            <li><a href="/about" class="nav-link">Our Team</a></li>
+            <!-- <li><a href="/about" class="nav-link">Our Team</a></li> -->
             <li>
               <a href="/contactUs" target="_blank" class="nav-link"
                 >Contact-Us</a
@@ -610,12 +610,12 @@
     <!-- about section starts -->
     <section id="features">
       <p>
-        Khel Sethu bridges the gap between the players and the actual ground.
+        InVITe event management system simplifies event organization, registration management, and ticket booking for organizers and attendees.
       </p>
       <div class="fea-base">
         <div class="fea-box">
           <h3><i class="fa fa fa-calendar-days"></i></h3>
-          <p>It provides all the ongoing and upcomming sports events.</p>
+          <p>It provides all the ongoing and upcomming events.</p>
         </div>
 
         <div class="fea-box">
@@ -637,29 +637,41 @@
         ongoing and upcomming events here.
       </p>
       <div class="events-box">
-        <% for(var i=0;i<3;i++) {%>
-        <div class="events">
-          <img src="<%=event[i].photo %>" />
-          <div class="details">
-            <span>Date: <%=event[i].dateStart.toLocaleDateString()%></span>
-            <h6><%=event[i].name%></h6>
-            <% if(Currentuser!=null) { %>
-            <center>
-              <button onclick="location.href='/fetchdetails/<%=event[i]._id%>'" class="regbtn">
-                View Details <i class="fa fa-arrow-right"></i>
-              </button>
-            </center>
-            <% } %> <% if(Currentuser==null) { %>
-            <center>
-              <button onclick="location.href='/loginUser'" class="regbtn">
-                View Details <i class="fa fa-arrow-right"></i>
-              </button>
-            </center>
-            <% } %>
-          </div>
-          <div class="cost">Rs. <%=event[i].registerationFee %></div>
-        </div>
-  <%} %>
+        <% if (event && event.length > 0) { %>
+          <% for (var i = 0; i < event.length && i < 3; i++) { %>
+            <div class="events">
+              <% if (event[i] && event[i].photo) { %>
+                <img src="<%= event[i].photo %>" />
+              <% } else { %>
+                <img src="path_to_placeholder_image.jpg" /> <!-- Optional placeholder if photo is missing -->
+              <% } %>
+        
+              <div class="details">
+                <span>Date: <%= event[i].dateStart ? event[i].dateStart.toLocaleDateString() : 'N/A' %></span>
+                <h6><%= event[i].name %></h6>
+        
+                <% if (Currentuser != null) { %>
+                  <center>
+                    <button onclick="location.href='/fetchdetails/<%= event[i]._id %>'" class="regbtn">
+                      View Details <i class="fa fa-arrow-right"></i>
+                    </button>
+                  </center>
+                <% } else { %>
+                  <center>
+                    <button onclick="location.href='/loginUser'" class="regbtn">
+                      View Details <i class="fa fa-arrow-right"></i>
+                    </button>
+                  </center>
+                <% } %>
+              </div>
+        
+              <div class="cost">Rs. <%= event[i].registerationFee || 'N/A' %></div>
+            </div>
+          <% } %>
+        <% } else { %>
+          <p>No events available.</p>
+        <% } %>
+        
 
         
       </div>
@@ -680,11 +692,11 @@
           <ul class="list-inline">
               <li class="list-inline-item"><a href="#">Home</a></li>
               <li class="list-inline-item"><a href="/checkevents">Events</a></li>
-              <li class="list-inline-item"><a href="/about">Our Team</a></li>
+              <!-- <li class="list-inline-item"><a href="/about">Our Team</a></li> -->
               <li class="list-inline-item"><a href="/contactUs" target="_blank">Contact-Us</a></li>
               
           </ul>
-          <p class="copyright"> © Khel Sethu </p>
+          <p class="copyright">inVITe</p>
       </footer>
   </div>
   <!--footer ended-->
